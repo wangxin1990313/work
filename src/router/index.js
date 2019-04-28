@@ -5,13 +5,22 @@ import Layout from '@/views/layout/layout'
 import Artical from '@/views/artical'
 import addArtical from '@/views/artical/add'
 import NotFound from  '@/page404'
+import login from '@/views/login'
 Vue.use(Router)
 
 let defaultRouter = [
+//   { path: '/',
+//     redirect: '/index',
+//     hidden: true,
+//     children: []
+//   },
   { path: '/',
-    redirect: '/index',
-    hidden: true,
-    children: []
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: login
   },
     {
       path: '/index',
