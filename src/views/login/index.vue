@@ -241,7 +241,8 @@
                             padding: 24px 17px;
                             float: left;
                             border-width: 1px;
-                            border-color: #dcdfe6;
+                            border-color: transparent;
+                            border-left: 1px solid #dcdfe6;
                             border-top: none;
                             border-right: none;
                             border-bottom: none;
