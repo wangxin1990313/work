@@ -31,7 +31,7 @@
                         <div ref="moveDiv" @mousedown="mousedownFn($event)" :class="{'handler_ok_bg':confirmSuccess}" class="handler handler_bg" style="position: absolute;top: 0px;left: 0px;"></div>
                     </div>
                     <div class="login-radio">
-                        <span class="save"><input type="checkbox" />保存登录</span> 
+                        <span class="save"><input type="checkbox" />保存登录</span>
                         <span class="forget">忘记密码?</span>
                     </div>
                     <div class="save-btn">
@@ -53,7 +53,7 @@
                         <div ref="moveDiv" @mousedown="mousedownFn($event)" :class="{'handler_ok_bg':confirmSuccess}" class="handler handler_bg" style="position: absolute;top: 0px;left: 0px;"></div>
                     </div>
                     <div class="login-radio">
-                        <span class="save"><input type="checkbox" />保存登录</span> 
+                        <span class="save"><input type="checkbox" />保存登录</span>
                         <span class="forget">忘记密码?</span>
                     </div>
                     <div class="save-btn">
@@ -87,7 +87,7 @@
                     this.beginClientX = e.clientX;
                 }
             },
-            //验证成功函数        
+            //验证成功函数
             successFunction(){
                 this.confirmSuccess = true
                 this.confirmWords = '验证通过';
@@ -100,8 +100,8 @@
                 document.getElementsByClassName('drag_text')[0].style.color = '#fff'
                 document.getElementsByClassName('handler')[0].style.left = this.maxwidth + 'px';
                 document.getElementsByClassName('drag_bg')[0].style.width = this.maxwidth + 'px';
-            }, 
-            //mousemove事件               
+            },
+            //mousemove事件
             mouseMoveFn(e){
                 if(this.mouseMoveStata){
                     let width = e.clientX - this.beginClientX;
@@ -112,8 +112,8 @@
                         this.successFunction();
                     }
                 }
-            }, 
-            //mouseup事件                 
+            },
+            //mouseup事件
             moseUpFn(e){
                 this.mouseMoveStata = false;
                 var width = e.clientX - this.beginClientX;
@@ -122,8 +122,8 @@
                     document.getElementsByClassName('drag_bg')[0].style.width = 0 + 'px';
                 }
             },
-            //tab切换                       
-            checkTab(t) {   
+            //tab切换
+            checkTab(t) {
                 this.temp=t
             }
         },
@@ -144,7 +144,7 @@
     .login_left{
         float: left;
         width: 41%;
-        // height: 100vh;
+        height: 100vh;
         background-color: #F7F9FC;
         .loginl_pic{
             width: 66%;
@@ -166,7 +166,7 @@
             p{
                font-size: 18px;
                color: #7b7c7d;
-               text-align: center 
+               text-align: center
             }
         }
     }
@@ -175,11 +175,12 @@
         width: 59%;
         height: 100vh;
         position: relative;
+        display: flex;
+        align-items: center;
         .login-box{
             width: 320px;
             position: absolute;
             left: calc(50% - 160px);
-            padding: 95px 0 85px;
             .login-logo{
                 margin: 0 auto;
                 width: 130px;
@@ -222,7 +223,7 @@
                         height:20px;
                         background: url('../../assets/image/user.png') no-repeat;
                         background-size: contain;
-                        float: left; 
+                        float: left;
                     }
                     .pwd-pic{
                         display: block;
@@ -231,7 +232,7 @@
                         height:20px;
                         background: url('../../assets/image/clock.png') no-repeat;
                         background-size: contain;
-                        float: left;  
+                        float: left;
                     }
                     input{
                             box-sizing: border-box;
@@ -283,7 +284,7 @@
                         -o-user-select:none;
                         -ms-user-select:none;
                     }
-                    
+
                 }
                 .login-radio{
                     margin-top: 20px;
