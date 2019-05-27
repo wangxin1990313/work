@@ -156,7 +156,7 @@
         .loginl_text{
             width: 79%;
             margin: 0 auto;
-            padding-bottom: 15vh;
+            //padding-bottom: 15vh;
             h2{
                 font-size: 24px;
                 color: #000;
