@@ -9,19 +9,18 @@ import login from '@/views/login'
 Vue.use(Router)
 
 let defaultRouter = [
-//   { path: '/',
-//     redirect: '/index',
-//     hidden: true,
-//     children: []
-//   },
-  { path: '/',
-    redirect: '/login'
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: login
-  },
+    { path: '/',
+      redirect: '/index',
+      hidden: true,
+      children: []
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login,
+      hidden: true,
+      children: []
+    },
     {
       path: '/index',
       component: Layout,
@@ -37,29 +36,28 @@ let defaultRouter = [
         }
       ]
     },
-  {
-    path: '/index',
-    component: Layout,
-    name: '主页1',
-    iconCls: 'el-icon-edit-outline', // 图标样式class
-    children: [
-      {
-        path: '/artical',
-        iconCls: 'el-icon-edit-outline', // 图标样式class
-        name: "aaa",
-        component: Artical,
-        children: []
-      },
-      {
-        path: '/add',
-        iconCls: 'el-icon-edit-outline', // 图标样式class
-        name: "aaa",
-        component: addArtical,
-        children: []
-      }
-    ]
-  },
-
+    {
+      path: '/index',
+      component: Layout,
+      name: '主页1',
+      iconCls: 'el-icon-edit-outline', // 图标样式class
+      children: [
+        {
+          path: '/artical',
+          iconCls: 'el-icon-edit-outline', // 图标样式class
+          name: "aaa",
+          component: Artical,
+          children: []
+        },
+        {
+          path: '/add',
+          iconCls: 'el-icon-edit-outline', // 图标样式class
+          name: "aaa",
+          component: addArtical,
+          children: []
+        }
+      ]
+    },
     {
       path: '/404',
       component: NotFound,

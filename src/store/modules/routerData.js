@@ -1,4 +1,4 @@
-import {defaultRouter, addRouter} from '@/router/index'
+import {defaultRouter, addRouter} from '../../router/index'
 
 const routerData = {
   state: {
@@ -7,6 +7,7 @@ const routerData = {
   },
   mutations: {
     setRouters: (state, routers) => {
+      debugger
       state.addRouters = routers  // 保存动态路由用来addRouter
       state.routers = defaultRouter.concat(routers) // 所有有权限的路由表，用来生成菜单列表
     }
