@@ -3,14 +3,13 @@
     <el-aside id="asideNav">
       <div class="logo-name">
         <p v-if="$store.getters.logoShow">XU</p>
-        <p v-else>vue-xuAdmin后台模板</p>
+        <p v-else>网站威胁扫描</p>
       </div>
       <el-menu :default-active="$route.path" class="el-menu-vertical"
                @select="selectmenu"
                :collapse="$store.getters.isCollapse"
-               background-color="#03152A"
-               text-color="rgba(255,255,255,.7)"
-               active-text-color="#ffffff"
+               background-color="rgba(37,42,47,1)"
+               text-color="rgba(255,255,255,1)"
                :router="$store.getters.uniquerouter"
                :unique-opened="$store.getters.uniquerouter"
                :collapse-transition="true"
@@ -40,6 +39,11 @@
   import menuTree from './menuTree'
 
   export default {
+    data(){
+      return {
+        logo:"./static/images/logo.png"
+      }
+    },
     name: 'asideNav',
     components: {
       menuTree,
@@ -99,9 +103,10 @@
   }
 
   #asideNav {
-    width: auto !important;
     display: flex;
+    width: 200px!important;
     flex-direction: column;
+    overflow-x: hidden;
     border-right: solid 1px #e6e6e6;
     .logo-name {
       background-color: #03152A !important;
@@ -109,17 +114,24 @@
       font-weight: 300;
       z-index: 999;
       p {
-        height: 50px;
-        line-height: 50px;
+        height: 60px;
+        line-height: 60px;
         text-align: center;
         font-size: 16px;
-        color: #5e6d82;
+        color:rgba(255,255,255,1);
       }
     }
     .el-menu-vertical:not(.el-menu--collapse) {
       width: 200px;
       @extend %h100;
       overflow-y: scroll;
+    }
+    .el-submenu .el-submenu__title:hover,.el-submenu.is-active .el-submenu__title:hover{
+      background-color:rgba(15,16,18,1)!important;
+    }
+    .el-menu-item, .el-submenu__title{
+      height: 40px!important;
+      line-height: 40px!important;
     }
     .el-menu {
       flex: 1;
@@ -144,7 +156,8 @@
         }
       }
       .el-menu-item.is-active {
-        background-color: #56a9ff !important
+        background-color: rgba(15,16,18,1) !important;
+        color: rgba(255,255,255,1) !important;
       }
       .is-opened > .el-submenu__title > .el-icon-arrow-down {
         color: #ffffff;

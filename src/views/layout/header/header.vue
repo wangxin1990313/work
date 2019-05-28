@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div style="background:rgba(15,16,18,1);">
     <el-header id="header">
-      <span class="hideAside" @click="collapse"><i class="fa fa-indent fa-lg"></i></span>
+      <!--<span class="hideAside" @click="collapse"><i class="fa fa-indent fa-lg"></i></span>-->
+      <img :src="logo" alt="" width="205" height="20" class="logo">
       <ul class="personal">
         <li class="fullScreen" @click="fullScreen">
           <el-tooltip class="item" effect="dark" content="全屏" placement="bottom"><i
@@ -34,7 +35,8 @@
     data () {
       return {
         isfullScreen: true,
-        avatar: './static/images/icon.jpg'
+        avatar: './static/images/icon.jpg',
+        logo:"./static/images/logo.png"
       }
     },
     methods: {
@@ -96,10 +98,12 @@
     cursor: pointer;
   }
 
-  html, body, #app, .el-container, #asideNav, ul.el-menu {
-    @extend %h100;
+  html, body, #app,  #asideNav, ul.el-menu {
+    height: 100%
   }
-
+  .el-container{
+    height: calc(100% - 50px);
+  }
   @mixin set-value($side, $value) {
     @each $prop in $leftright {
       #{$side}-#{$prop}: $value;
@@ -112,6 +116,9 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
     display: flex;
     justify-content: space-between;
+    .logo{
+      margin-top: 15px;
+    }
     .hideAside {
       @extend %cursor;
     }
@@ -130,11 +137,11 @@
       }
       .icon img {
         margin-#{$top}: 7px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        width: 40px;
-        height: 40px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
       }
     }
   }

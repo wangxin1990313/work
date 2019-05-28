@@ -1,19 +1,17 @@
 <template>
   <div id="loyout">
-    <el-container>
-      <layoutAside></layoutAside>
+    <layoutHeader></layoutHeader>
       <el-container>
-        <layoutHeader></layoutHeader>
+        <layoutAside></layoutAside>
         <el-main id="elmain">
           <transition name="main" mode="out-in">
             <router-view></router-view>
           </transition>
         </el-main>
-        <el-footer>
-          <Bottom></Bottom>
-        </el-footer>
+        <!--<el-footer>-->
+          <!--<Bottom></Bottom>-->
+        <!--</el-footer>-->
       </el-container>
-    </el-container>
   </div>
 </template>
 

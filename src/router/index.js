@@ -3,7 +3,9 @@ import Router from 'vue-router'
 import home from '@/views/home'
 import Layout from '@/views/layout/layout'
 import Artical from '@/views/artical'
-import addArtical from '@/views/artical/add'
+import Zichan from '@/views/zichan'
+import Muma from '@/views/muma'
+import Task from '@/views/task'
 import NotFound from  '@/page404'
 import login from '@/views/login'
 Vue.use(Router)
@@ -25,12 +27,12 @@ let defaultRouter = [
       path: '/index',
       component: Layout,
       iconCls: 'el-icon-edit-outline', // 图标样式class
-      name: '主页',
+      name: '首页',
       children: [
         {
           path: '/index',
           iconCls: 'el-icon-edit-outline', // 图标样式class
-          name: '主页',
+          name: '首页',
           component: home,
           children: []
         }
@@ -39,25 +41,63 @@ let defaultRouter = [
     {
       path: '/index',
       component: Layout,
-      name: '主页1',
+      name: '总览',
       iconCls: 'el-icon-edit-outline', // 图标样式class
       children: [
         {
           path: '/artical',
           iconCls: 'el-icon-edit-outline', // 图标样式class
-          name: "aaa",
+          name: "总览",
           component: Artical,
           children: []
         },
-        {
-          path: '/add',
-          iconCls: 'el-icon-edit-outline', // 图标样式class
-          name: "aaa",
-          component: addArtical,
-          children: []
-        }
       ]
     },
+  {
+    path: '/index',
+    component: Layout,
+    name: '资产列表',
+    iconCls: 'el-icon-edit-outline', // 图标样式class
+    children: [
+      {
+        path: '/zichan',
+        iconCls: 'el-icon-edit-outline', // 图标样式class
+        name: "资产列表",
+        component: Zichan,
+        children: []
+      },
+    ]
+  },
+  {
+    path: '/index',
+    component: Layout,
+    name: '敏感/木马列表',
+    iconCls: 'el-icon-edit-outline', // 图标样式class
+    children: [
+      {
+        path: '/muma',
+        iconCls: 'el-icon-edit-outline', // 图标样式class
+        name: "敏感/木马列表",
+        component: Muma,
+        children: []
+      },
+    ]
+  },
+  {
+    path: '/index',
+    component: Layout,
+    name: '扫描任务',
+    iconCls: 'el-icon-edit-outline', // 图标样式class
+    children: [
+      {
+        path: '/task',
+        iconCls: 'el-icon-edit-outline', // 图标样式class
+        name: "扫描任务",
+        component: Task,
+        children: []
+      },
+    ]
+  },
     {
       path: '/404',
       component: NotFound,
