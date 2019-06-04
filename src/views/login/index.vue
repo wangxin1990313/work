@@ -16,7 +16,7 @@
                     <li @click="checkTab(true)" :class="{active:temp}">登录</li>
                     <li @click="checkTab(false)" :class="{active:!temp}">注册</li>
                 </ul>
-                <div class="login-content" v-if="temp">
+                <!-- <div class="login-content" v-if="temp">
                     <label>账号</label>
                     <div class="login-input">
                         <i class="user-pic"></i><input type="text" placeholder="输入用户名/邮箱"/>
@@ -31,7 +31,7 @@
                         <div ref="moveDiv" @mousedown="mousedownFn($event)" :class="{'handler_ok_bg':confirmSuccess}" class="handler handler_bg" style="position: absolute;top: 0px;left: 0px;"></div>
                     </div>
                     <div class="login-radio">
-                        <span class="save"><input type="checkbox" />保存登录</span>
+                        <span class="save"><input type="checkbox" />保存登录</span> 
                         <span class="forget">忘记密码?</span>
                     </div>
                     <div class="save-btn">
@@ -39,13 +39,16 @@
                     </div>
                 </div>
                 <div class="login-content" v-if="!temp">
-                    <label>账号1</label>
+                    <label>设置会员名</label>
                     <div class="login-input">
-                        <i class="user-pic"></i><input type="text" placeholder="输入用户名/邮箱"/>
+                        <i class="user-pic"></i><input type="text" placeholder="输入会员名"/>
                     </div>
-                    <label>密码2</label>
+                    <label>设置登录密码</label>
                     <div class="login-input">
                         <i class="pwd-pic"></i><input type="text" placeholder="输入密码"/>
+                    </div>
+                    <div class="login-input">
+                        <i class="pwd-pic"></i><input type="text" placeholder="再次输入密码"/>
                     </div>
                     <div class="drag" ref="dragDiv">
                         <div class="drag_bg"></div>
@@ -53,13 +56,98 @@
                         <div ref="moveDiv" @mousedown="mousedownFn($event)" :class="{'handler_ok_bg':confirmSuccess}" class="handler handler_bg" style="position: absolute;top: 0px;left: 0px;"></div>
                     </div>
                     <div class="login-radio">
-                        <span class="save"><input type="checkbox" />保存登录</span>
+                        <span class="save"><input type="checkbox" />保存登录</span> 
                         <span class="forget">忘记密码?</span>
                     </div>
                     <div class="save-btn">
                         <a>立即登录<i></i></a>
                     </div>
-                </div>
+                </div> -->
+                <el-form 
+                    ref="loginForm" 
+                    :model="loginForm" 
+                    :rules="loginRules" 
+                    class="login-content" 
+                    auto-complete="on"
+                    label-position="left"
+                    v-if="temp">
+                    <label>账号</label>
+			        <el-form-item prop="email" class="login-input">
+                        <div class="user-box"><i class="user-pic"></i></div>
+				        <el-input v-model="loginForm.email" name="email" type="text" auto-complete="on" placeholder="输入用户名/邮箱"/>
+			        </el-form-item>
+                    <label>密码</label>
+                    <el-form-item prop="password" class="login-input">
+                        <div class="pwd-box"><i class="pwd-pic"></i></div>
+                        <el-input
+                            v-model="loginForm.password"
+                            name="password"
+                            auto-complete="on"
+                            placeholder="输入密码"
+                            @keyup.enter.native="handleLogin"/>
+                    </el-form-item>
+                    <div class="drag" ref="dragDiv">
+                        <div class="drag_bg"></div>
+                        <div class="drag_text">{{confirmWords}}</div>
+                        <div ref="moveDiv" @mousedown="mousedownFn($event)" :class="{'handler_ok_bg':confirmSuccess}" class="handler handler_bg" style="position: absolute;top: 0px;left: 0px;"></div>
+                    </div>
+                    <div class="login-radio">
+                        <!-- <span class="save"><input type="checkbox" />保存登录</span>  -->
+                        <el-checkbox label="保存登录"></el-checkbox>
+                        <span class="forget">忘记密码?</span>
+                    </div>
+                    <el-form-item>
+                        <el-button type="primary" style="width:100%;" @click.native.prevent="handleLogin">
+                            立即登录<i></i>
+                        </el-button>
+                    </el-form-item>
+		        </el-form>
+                <el-form 
+                    ref="loginForm" 
+                    :model="loginForm" 
+                    :rules="loginRules" 
+                    class="login-content" 
+                    auto-complete="on"
+                    label-position="left"
+                    v-if="!temp">
+                    <label>设置会员名</label>
+			        <el-form-item prop="email" class="login-input">
+                        <div class="user-box"><i class="user-pic"></i></div>
+				        <el-input v-model="loginForm.email" name="email" type="text" auto-complete="on" placeholder="输入会员名"/>
+			        </el-form-item>
+                    <label>设置登录密码</label>
+                    <el-form-item prop="password" class="login-input">
+                        <div class="pwd-box"><i class="pwd-pic"></i></div>
+                        <el-input
+                            v-model="loginForm.password"
+                            name="password"
+                            auto-complete="on"
+                            placeholder="输入密码"
+                            @keyup.enter.native="handleLogin"/>
+                    </el-form-item>
+                    <el-form-item prop="password" class="login-input">
+                        <div class="pwd-box"><i class="pwd-pic"></i></div>
+                        <el-input
+                            v-model="loginForm.password"
+                            name="password"
+                            auto-complete="on"
+                            placeholder="再次输入密码"
+                            @keyup.enter.native="handleLogin"/>
+                    </el-form-item>
+                    <div class="drag" ref="dragDiv">
+                        <div class="drag_bg"></div>
+                        <div class="drag_text">{{confirmWords}}</div>
+                        <div ref="moveDiv" @mousedown="mousedownFn($event)" :class="{'handler_ok_bg':confirmSuccess}" class="handler handler_bg" style="position: absolute;top: 0px;left: 0px;"></div>
+                    </div>
+                    <div class="login-radio">
+                        <el-checkbox label="CmsTOP 服务条款 法律声明和隐私权政策"></el-checkbox>
+                    </div>
+                    <el-form-item>
+                        <el-button type="primary" style="width:100%;" @click.native.prevent="handleLogin">
+                            同意条款并注册<i></i>
+                        </el-button>
+                    </el-form-item>
+		        </el-form>
             </div>
         </div>
     </div>
@@ -67,15 +155,50 @@
 
 <script>
     export default {
-         name: 'login',
+        name: 'login',
         data(){
             return {
+                loginForm: {
+                email: 'admin@cmstop.com',
+                password: '123456',
+		            site_id: '10001'
+            },
+            loginRules: {
+                email: [{
+                    required: true,
+                    trigger: 'blur',
+                    validator: validateUsername
+                }],
+                password: [{
+                    required: true,
+                    trigger: 'blur',
+                    validator: validatePass
+                }],
+                site_id: [{
+                    required: true,
+                    trigger: 'blur'
+                }]
+            },
                 beginClientX:0,           /*距离屏幕左端距离*/
                 mouseMoveStata:false,     /*触发拖动状态  判断*/
                 maxwidth:'',               /*拖动最大宽度，依据滑块宽度算出来的*/
                 confirmWords:'拖动滑块验证',   /*滑块文字*/
                 confirmSuccess:false,           /*验证成功判断*/
                 temp:true
+            }
+            const validateUsername = (rule, value, callback) => {
+                if (!isvalidUsername(value)) {
+                    callback(new Error('请输入正确的用户名'))
+                } else {
+                    callback()
+                }
+            }
+            const validatePass = (rule, value, callback) => {
+                if (value.length < 5) {
+                    callback(new Error('密码不能小于5位'))
+                } else {
+                    callback()
+                }
             }
         },
         methods: {
@@ -87,7 +210,7 @@
                     this.beginClientX = e.clientX;
                 }
             },
-            //验证成功函数
+            //验证成功函数        
             successFunction(){
                 this.confirmSuccess = true
                 this.confirmWords = '验证通过';
@@ -100,8 +223,8 @@
                 document.getElementsByClassName('drag_text')[0].style.color = '#fff'
                 document.getElementsByClassName('handler')[0].style.left = this.maxwidth + 'px';
                 document.getElementsByClassName('drag_bg')[0].style.width = this.maxwidth + 'px';
-            },
-            //mousemove事件
+            }, 
+            //mousemove事件               
             mouseMoveFn(e){
                 if(this.mouseMoveStata){
                     let width = e.clientX - this.beginClientX;
@@ -112,8 +235,8 @@
                         this.successFunction();
                     }
                 }
-            },
-            //mouseup事件
+            }, 
+            //mouseup事件                 
             moseUpFn(e){
                 this.mouseMoveStata = false;
                 var width = e.clientX - this.beginClientX;
@@ -122,8 +245,8 @@
                     document.getElementsByClassName('drag_bg')[0].style.width = 0 + 'px';
                 }
             },
-            //tab切换
-            checkTab(t) {
+            //tab切换                       
+            checkTab(t) {   
                 this.temp=t
             }
         },
@@ -144,7 +267,7 @@
     .login_left{
         float: left;
         width: 41%;
-        height: 100vh;
+        // height: 100vh;
         background-color: #F7F9FC;
         .loginl_pic{
             width: 66%;
@@ -156,7 +279,7 @@
         .loginl_text{
             width: 79%;
             margin: 0 auto;
-            //padding-bottom: 15vh;
+            padding-bottom: 15vh;
             h2{
                 font-size: 24px;
                 color: #000;
@@ -166,7 +289,7 @@
             p{
                font-size: 18px;
                color: #7b7c7d;
-               text-align: center
+               text-align: center 
             }
         }
     }
@@ -175,12 +298,11 @@
         width: 59%;
         height: 100vh;
         position: relative;
-        display: flex;
-        align-items: center;
         .login-box{
             width: 320px;
             position: absolute;
             left: calc(50% - 160px);
+            padding: 60px 0 75px;
             .login-logo{
                 margin: 0 auto;
                 width: 130px;
@@ -190,7 +312,7 @@
                 margin-bottom: 40px;
             }
             .login-tab{
-                margin-bottom: 30px;
+                margin-bottom: 20px;
                 li{
                     display: inline-block;
                     font-size: 18px;
@@ -208,45 +330,58 @@
                 label{
                     display: inline-block;
                     text-align: left;
-                    margin:20px 0 10px;
+                    margin:0 0 10px;
                 }
                 .login-input{
                     width: 320px;
                     height: 48px;
                     overflow: hidden;
-                    border: 1px solid rgba(220,223,230,1);
                     border-radius: 4px;
-                    .user-pic{
-                        display: block;
-                        margin:14px 16px;
-                        width:16px;
-                        height:20px;
-                        background: url('../../assets/image/user.png') no-repeat;
-                        background-size: contain;
-                        float: left;
+                    .user-box{
+                        width:48px;
+                        height:48px;
+                        display:inline-block;
+                        position: absolute;
+                        z-index: 9999;
+                        border-right: 1px solid #dcdfe6;
+                        .user-pic{
+                            display: block;
+                            margin:14px 16px;
+                            width:16px;
+                            height:20px;
+                            background: url('../../assets/image/user.png') no-repeat;
+                            background-size: contain;
+                            float: left; 
+                        }
                     }
-                    .pwd-pic{
-                        display: block;
-                        margin:14px 16px;
-                        width:16px;
-                        height:20px;
-                        background: url('../../assets/image/clock.png') no-repeat;
-                        background-size: contain;
-                        float: left;
+                    .pwd-box{
+                        width:48px;
+                        height:48px;
+                        display:inline-block;
+                        position: absolute;
+                        z-index: 9999;
+                        border-right: 1px solid #dcdfe6;
+                        .pwd-pic{
+                            display: block;
+                            margin:14px 16px;
+                            width:16px;
+                            height:20px;
+                            background: url('../../assets/image/clock.png') no-repeat;
+                            background-size: contain;
+                            float: left;  
+                        }
                     }
-                    input{
-                            box-sizing: border-box;
-                            width: 272px;
-                            height: 14px;
-                            line-height: 14px;
-                            padding: 24px 17px;
-                            float: left;
-                            border-width: 1px;
-                            border-color: transparent;
-                            border-left: 1px solid #dcdfe6;
-                            border-top: none;
-                            border-right: none;
-                            border-bottom: none;
+                    .el-input{
+                        width: 319px;
+                        // border-width: 1px;
+                        // border-color: transparent;
+                        // border-left: 1px solid #dcdfe6;
+                        // border-top: none;
+                        // border-right: none;
+                        // border-bottom: none;
+                        .el-input__inner{
+                            width: 300px;
+                        }
                     }
                 }
                 .drag{
@@ -284,7 +419,7 @@
                         -o-user-select:none;
                         -ms-user-select:none;
                     }
-
+                    
                 }
                 .login-radio{
                     margin-top: 20px;
@@ -326,5 +461,27 @@
         }
     }
 
+}
+</style>
+<style lang="scss">
+input{
+    height: 48px!important;
+    padding:0 15px 0 60px!important;
+}
+.el-button--primary span i{
+    display: inline-block;
+    width: 15px;
+    height:10px;
+    background: url('../../assets/image/point.png') no-repeat;
+    background-size: contain;
+    margin-left: 9px;
+}
+.el-checkbox__label {
+    display: inline-block;
+    padding-left: 10px;
+    font-size:14px;
+    font-family:MicrosoftYaHei;
+    color:rgba(144,147,153,1);
+    line-height:16px;
 }
 </style>

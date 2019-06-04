@@ -8,11 +8,20 @@ import Muma from '@/views/muma'
 import Task from '@/views/task'
 import NotFound from  '@/page404'
 import login from '@/views/login'
+import guide from '@/views/guide'
 Vue.use(Router)
 
 let defaultRouter = [
     { path: '/',
-      redirect: '/login',
+      redirect: '/guide',
+      hidden: true,
+      component: guide,
+      children: []
+    },
+    {
+      path: '/guide',
+      name: 'guide',
+      component: guide,
       hidden: true,
       children: []
     },
